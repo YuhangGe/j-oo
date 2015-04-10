@@ -3,19 +3,16 @@
   var __id = 1;
   var prop = '__$class_id$__';
   var deep = '__$class_deep$__';
-
   function $isUndefined(obj) {
     return typeof obj === 'undefined';
   }
   function $isFunction(obj) {
     return typeof obj === 'function';
   }
-
   function err(msg) {
     debugger;
     throw new Error(msg);
   }
-
   function $hasProperty(obj, prop) {
     return obj.hasOwnProperty(prop);
   }
@@ -27,7 +24,6 @@
       configurable: configurable !== false
     })
   }
-
   function dc(Class) {
     var cp = Class.prototype;
     if (!$hasProperty(cp, prop)) {
@@ -41,7 +37,6 @@
       __id++;
     }
   }
-
   function create(constructor, properties, ParentClass) {
     var Class = function() {
       if (!$hasProperty(this, deep)) {
@@ -64,14 +59,11 @@
     bind(Class, properties, constructor);
 
     if (ParentClass && $hasProperty(ParentClass, prop)) {
-
       var cm = __map[Class[prop]];
       var pm = __map[ParentClass[prop]];
       cm.b = [ParentClass].concat(pm.b);
       var cpt = Class.prototype;
       var ppt = ParentClass.prototype;
-
-
       cpt.base = function() {
         this[deep]++;
         //如此疯狂的一行代码。。。
@@ -82,7 +74,6 @@
         if ($isUndefined(method)) {
           err('callBase method need function name as first argument');
         }
-
         var baseClass, med;
         this[deep]++;
         baseClass = __map[this[prop]].b[this[deep]];
@@ -90,14 +81,12 @@
         med.apply(this, [].slice.call(arguments, 1));
         this[deep]--;
       };
-
       var k;
       for (k in pm.p) {
         if (!$hasProperty(cm.p, k)) {
           cm.p[k] = pm.p[k];
         }
       }
-
       for (k in ppt) {
         if (!$hasProperty(cpt, k)) {
           cpt[k] = ppt[k];
@@ -106,7 +95,6 @@
     }
     return Class;
   }
-
   function bind(Class, properties, constructor) {
     var m = __map[Class[prop]];
     if (constructor) {
@@ -122,24 +110,18 @@
       t[k] = p;
     }
   }
-
   create.partial = function(Class, constructor, properties) {
     if (!$hasProperty(Class, prop)) {
       err('扩展一个Class，请先创建它');
     }
-
     if (typeof constructor === 'function') {
       bind(Class, properties, constructor);
     } else {
       bind(Class, constructor);
     }
   };
-
   if (typeof window !== 'undefined') {
-    if (typeof angular !== 'undefined') {
-      angular.module('oo', []).factory('oo', create);
-    }
-    window.oo = create;
+    window.Class = create;
   } else {
     module.exports = create;
   }
