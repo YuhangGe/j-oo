@@ -2,7 +2,7 @@
 
 Special light object-oriented framework.
 
-Less than 200 lines, but has more functions.
+Less than 130 lines, but has more functions.
 
 ## API
 
