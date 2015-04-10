@@ -1,6 +1,6 @@
 # j-oo
 
-Special light object-oriented framework.
+Special light javascript object-oriented framework.
 
 Less than 130 lines, but has more functions.
 
