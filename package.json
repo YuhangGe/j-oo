@@ -1,0 +1,18 @@
+{
+  "name": "j-oo",
+  "version": "0.0.1",
+  "description": "Special light object-oriented framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "oo",
+    "object-oriented"
+  ],
+  "spm": {
+
+  },
+  "author": "羽航",
+  "license": "ISC"
+}
