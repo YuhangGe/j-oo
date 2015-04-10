@@ -10,7 +10,7 @@ Less than 200 lines, but has more functions.
 
 Create a class. 
 
-````
+````js
 var Class = require('j-oo');
 var Person = Class(function(name) {
   this.name = name;
@@ -52,8 +52,8 @@ var Man = Class(function(name, age) {
 var Tycoon = Class(function(name, age) {
   this.base(name, age);
 }, {
-  say: {
-    this.callBase('say', 'I\'m rich!!');
+  say: function() {
+    this.callBase('say', 'I\'m rich!!', this.age);
   },
   //override property
   money: {
@@ -68,7 +68,9 @@ var Tycoon = Class(function(name, age) {
 
 ### `Class.partial(someClass, [constructor, properties])`
 
-Extend a Class. 
+Extend a Class, similar as .NET's partial keyword. Sometimes you write a class with
+a variety of duties, and this class contains many lines of code. You can split this
+class into multi files by using `Class.partial`. 
 
 ````js
 /*
@@ -99,4 +101,5 @@ Class.partial(SomeClass, {
 Class.partial(SomeClass, function() {
   this.anotherProperty = 'xxoo';
 });
+
 ````
