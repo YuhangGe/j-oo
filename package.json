@@ -1,6 +1,6 @@
 {
   "name": "j-oo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Special light object-oriented framework",
   "main": "index.js",
   "scripts": {
