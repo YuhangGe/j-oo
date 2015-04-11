@@ -120,9 +120,9 @@
       bind(Class, constructor);
     }
   };
-  if (typeof window !== 'undefined') {
-    window.Class = create;
-  } else {
+  if (typeof module !== 'undefined') {
     module.exports = create;
+  } else if (typeof window !== 'undefined') {
+    window.Class = create;
   }
 })();
